@@ -1,4 +1,4 @@
-# trailscript-testgen
+# trailscript-testgen [![CI](https://github.com/nachee/trailscript-testgen/actions/workflows/ci.yml/badge.svg)](https://github.com/nachee/trailscript-testgen/actions/workflows/ci.yml)
 
 Turn recorded user-interaction event streams into runnable **Playwright** end-to-end tests.
 
