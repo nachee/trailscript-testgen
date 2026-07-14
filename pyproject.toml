@@ -1,0 +1,39 @@
+[project]
+name = "trailscript-testgen"
+version = "0.1.0"
+description = "Turn recorded user-interaction event streams into runnable Playwright E2E tests: flow-graph analysis, deduplication strategies, deterministic codegen, and optional Claude refinement."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+keywords = ["playwright", "e2e", "test-generation", "codegen", "flow-analysis", "networkx"]
+dependencies = [
+    "networkx>=3.2",
+    "jinja2>=3.1",
+    "pydantic>=2.0,<3.0",
+]
+
+[project.optional-dependencies]
+# Optional LLM refinement pass (testgen.ai). The deterministic pipeline works
+# without it; refinement requires an ANTHROPIC_API_KEY at runtime.
+ai = [
+    "anthropic>=0.18",
+]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "anthropic>=0.18",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["testgen", "event_schema"]
+
+[tool.setuptools.package-data]
+"testgen.generators.playwright" = ["templates/*.j2"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
