@@ -13,6 +13,10 @@ E2E-test-generation product. The surrounding service (Celery workers, PostgreSQL
 storage, the customer dashboard) is intentionally left out — this repo is the pure,
 self-contained pipeline: **events → flow graph → popular paths → dedup → codegen**.
 
+The events it consumes are produced by [`trailscript-tracker`](https://github.com/nachee/trailscript-tracker)
+and typed by [`trailscript-event-schema`](https://github.com/nachee/trailscript-event-schema), whose
+generated Pydantic models are vendored here as `event_schema/`.
+
 ```
  raw events ──▶ session split ──▶ flow graph ──▶ popular paths ──▶ dedup ──▶ Playwright spec
    (dicts)      (normalisation)   (NetworkX)     (thresholded)   (strategies)  (Jinja2 [+ Claude])
